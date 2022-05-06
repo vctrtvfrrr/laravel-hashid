@@ -27,18 +27,18 @@ trait HashableId
             ? $query->where($this->getHashColumnName(), $hash)
             : $query->where($this->getKeyName(), self::hashToId($hash));
     }
-    
+
     /**
 	 * @see parent
 	 */
-	public function resolveRouteBinding($value, $field = null): ?self
-	{
-		if ($field) {
-			return parent::resolveRouteBinding($value, $field);
-		}
+    public function resolveRouteBinding($value, $field = null)
+    {
+        if ($field) {
+            return parent::resolveRouteBinding($value, $field);
+        }
 
-		return $this->byHash($value);
-	}
+        return $this->byHash($value);
+    }
 
     /**
      * Get Model by hash.
